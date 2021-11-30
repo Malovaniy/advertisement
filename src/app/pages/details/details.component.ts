@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IBoard } from 'src/app/shared/interface/board.interface';
 import { BoardService } from 'src/app/shared/services/board/board.service';
 
@@ -21,11 +21,15 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.routeId = this.activatedRoute.snapshot.params.details
+    this.activeRoute()
     this.loadAllAdvert()
   }
 
   ngDoCheck(): void {
+    this.activeRoute()
+  }
+  
+  activeRoute():void{
     this.routeId = this.activatedRoute.snapshot.params.details
   }
 
