@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
 
   addAdvert(): void {
     if (this.advertForm.valid) {
+      this.advertForm.patchValue({date: new Date()});
       this.boardServices.create(this.advertForm.value).subscribe(() => {
         this.loadAdvertisement()
         this.initAdvertForm()

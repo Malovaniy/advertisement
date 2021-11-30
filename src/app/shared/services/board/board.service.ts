@@ -11,7 +11,7 @@ export class BoardService {
 
   public isModal$ = new Subject<boolean>();
   public field$ = new Subject<string>();
-  private url = environment.BACKEND;
+  private url = environment.BACKEND ;
   private api = { advertisement: `${this.url}/advertisement` };
 
   constructor(private http: HttpClient) { }
