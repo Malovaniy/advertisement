@@ -20,13 +20,18 @@ export class HeaderComponent implements OnInit {
     this.loadAdvertisement()
   }
 
+  cancelSearch():void{
+    this.field = ``
+    this.search()  
+  }
+
   search(): void {
     this.boardServices.searchValv(this.field)
   }
 
   loadAdvertisement(): void {
     this.boardServices.getAll().subscribe(e => {
-      this.arrAdvertisement = e
+      this.arrAdvertisement = e as Array<IBoard>
     }, err => {
       console.log(err);
     })

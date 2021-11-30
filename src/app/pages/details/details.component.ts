@@ -11,7 +11,7 @@ import { BoardService } from 'src/app/shared/services/board/board.service';
 export class DetailsComponent implements OnInit {
 
   public arrAdverts: Array<IBoard> = []
-  public routeId!: number
+  public routeId!: string
   public analogAdvers: Array<IBoard> = []
   public advert!: Array<IBoard>
 
@@ -31,7 +31,7 @@ export class DetailsComponent implements OnInit {
 
   loadAllAdvert(): void {
     this.boardServices.getAll().subscribe(e => {
-      this.arrAdverts = e
+      this.arrAdverts = e as Array<IBoard>
       this.filterAdv()
     }, err => {
       console.log(err);

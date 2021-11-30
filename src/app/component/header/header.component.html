@@ -1,5 +1,5 @@
 <header class="header">
-     <h3>Оголошення</h3>
+     <h3 [routerLink]="['']" (click)="cancelSearch()">Оголошення</h3>
      <label for="search" class="inpSeach">
           <input type="text" [(ngModel)]="field" id="search">
           <button class="btn" (click)="search()">Пошук</button>

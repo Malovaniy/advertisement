@@ -4,7 +4,16 @@
 
 export const environment = {
   production: true,
-  BACKEND: "http://localhost:3000"
+  BACKEND: "http://localhost:3000",
+  firebaseConfig: {
+    apiKey: "AIzaSyC1CJ8dQZsk7_58MGSiZpHWSV5itf2PUfw",
+    authDomain: "hw21-e8ed3.firebaseapp.com",
+    projectId: "hw21-e8ed3",
+    storageBucket: "hw21-e8ed3.appspot.com",
+    messagingSenderId: "508645374012",
+    appId: "1:508645374012:web:7128845b8ea4bfab0f2b39",
+    measurementId: "G-08RQSK61FH"
+  }
 };
 
 /*

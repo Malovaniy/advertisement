@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   public advertForm!: FormGroup;
   public arrAdvertisement!: Array<IBoard>
   public isEdit = false
-  public uid!: number
+  public uid!: string
   constructor(
     private boardServices: BoardService,
     private fb: FormBuilder
@@ -26,11 +26,14 @@ export class HomeComponent implements OnInit {
     this.loadModal()
     this.initAdvertForm()
     this.search()
+    // let a = new Date()
+    // console.log(a.toISOString());
+    
   }
 
   loadAdvertisement(): void {
     this.boardServices.getAll().subscribe(e => {
-      this.arrAdvertisement = e
+      this.arrAdvertisement = e as Array<IBoard>
     }, err => {
       console.log(err);
     })
@@ -40,18 +43,18 @@ export class HomeComponent implements OnInit {
     this.advertForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      date: new Date()
+      date: new Date().toISOString()
     })
   }
 
   addAdvert(): void {
     if (this.advertForm.valid) {
-      this.advertForm.patchValue({date: new Date()});
-      this.boardServices.create(this.advertForm.value).subscribe(() => {
+      this.advertForm.patchValue({date: new Date().toISOString()});
+      this.boardServices.create(this.advertForm.value).then(() => {
         this.loadAdvertisement()
         this.initAdvertForm()
         this.modalExit()
-      }, err => {
+      }).catch(err=>{
         console.log(err);
       })
     }
@@ -60,10 +63,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  delete(id: number): void {
-    this.boardServices.delete(id).subscribe(() => {
+  delete(id: string): void {
+    this.boardServices.delete(id).then(() => {
       this.loadAdvertisement()
-    }, err => {
+    }).catch(err=>{
       console.log(err);
     })
   }
@@ -74,7 +77,7 @@ export class HomeComponent implements OnInit {
     this.advertForm.patchValue({
       description: item.description,
       name: item.name,
-      date: new Date(),
+      date: new Date().toISOString(),
     });
     if (this.isEdit) {
       this.modalCall()
@@ -84,11 +87,11 @@ export class HomeComponent implements OnInit {
 
   saveChanges(): void {
     if (this.advertForm.valid) {
-      this.boardServices.update(this.advertForm.value, this.uid).subscribe(() => {
+      this.boardServices.update(this.advertForm.value, this.uid).then(() => {
         this.loadAdvertisement()
         this.initAdvertForm()
         this.modalExit()
-      }, err => {
+      }).catch(err=>{
         console.log(err);
       })
     }

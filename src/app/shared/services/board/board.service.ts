@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { DocumentData, DocumentReference } from 'rxfire/firestore/interfaces';
 import { Observable, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { IBoard } from '../../interface/board.interface';
 
 @Injectable({
@@ -11,10 +12,10 @@ export class BoardService {
 
   public isModal$ = new Subject<boolean>();
   public field$ = new Subject<string>();
-  private url = environment.BACKEND ;
-  private api = { advertisement: `${this.url}/advertisement` };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private firestore: Firestore
+    ) { }
 
   searchValv(str: string):void{
     this.field$.next(str)
@@ -27,27 +28,22 @@ export class BoardService {
   modalExit():void{
     this.isModal$.next(false)
   }
-
-  getAll(): Observable<IBoard[]> {
-    return this.http.get<IBoard[]>(this.api.advertisement);
+   
+  getAll(): Observable<DocumentData[]> {
+    return collectionData(collection(this.firestore, 'advertisement'), {idField: 'id'})
   }
 
-  getOne(id: number): Observable<IBoard> {
-    return this.http.get<IBoard>(`${this.api.advertisement}/${id}`);
+  create(advertisement: IBoard): Promise<DocumentReference<DocumentData>> {
+    return addDoc(collection(this.firestore, "advertisement"), advertisement);
   }
 
-  create(advertisement: IBoard): Observable<void> {
-    return this.http.post<void>(this.api.advertisement, advertisement);
+  update(advertisement: IBoard, id: string): Promise<void> {
+    return setDoc(doc(this.firestore, "advertisement", id), advertisement);
   }
 
-  update(advertisement: IBoard, id: number): Observable<void> {
-    return this.http.patch<void>(`${this.api.advertisement}/${id}`, advertisement);
+  delete(id: string): Promise<void> {
+    return deleteDoc(doc(this.firestore, "advertisement", id));
   }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.api.advertisement}/${id}`);
-  }
-
 }
 
 
