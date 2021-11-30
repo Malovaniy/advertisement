@@ -1,0 +1,13 @@
+<button class="btn out" [routerLink]="[ '']">Назад до оголошень</button>
+     <main class="detail" *ngFor="let adv of advert">
+          <h1 class="text">{{adv?.name}}</h1>
+          <p class="text">{{adv?.description}}</p>
+          <p class="text tobottom" *ngIf="analogAdvers.length > 0">Подібні оголошення</p>
+          <div class="rowblock" *ngIf="analogAdvers.length > 0">
+               <div class="analog flexcenter"  *ngFor="let item of analogAdvers | slice:0:3">
+                    <p >{{item?.name | slice:0: 14}}</p>
+                    <p >{{item?.description | slice:0: 15}}</p>
+                    <button class="boardChild btn" (click)="refresh()" [routerLink]="[ '/details', item.id]">details</button>
+               </div>
+          </div>
+     </main>

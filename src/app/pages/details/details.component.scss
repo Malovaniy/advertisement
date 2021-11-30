@@ -1,0 +1,33 @@
+
+.detail{
+     margin: 5%;
+}
+.text{
+     word-wrap: break-word;
+     text-align: center;
+}
+.out{
+     margin-left: 1%;
+     margin-top: 1%;
+}
+.rowblock{
+     display: flex;
+     border-top: 1px solid #000;
+     border-bottom: 1px solid #000;
+     margin-top: 1%;     
+}
+.tobottom{
+     margin-top: 20%;
+
+}
+.analog{
+     margin-left: 10%;
+     margin-right: 10%;
+     flex-direction: column;
+     margin-top:  1%;
+     margin-bottom: 1%;
+}
+.flexcenter{
+     display: flex;
+     justify-content: center;
+}

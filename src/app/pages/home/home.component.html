@@ -1,0 +1,30 @@
+<main class="center">
+     <div class="container">
+
+          <div *ngFor="let item of arrAdvertisement | search: field" class="board">
+               <p class="boardChild itname">{{item.name | slice:0:12 }}</p>
+               <p class=" desc"> {{item.description | slice:0:26 }}</p>
+               <button class="boardChild btn" [routerLink]="[ '/details', item.id]">details</button>
+               <button class="boardChild btn" (click)="edit(item)">edit</button>
+               <button class="boardChild btn" (click)="delete(item.id)">delete</button>
+               <p class="boardChild">{{item.date | date: 'dd.MM.yyyy' }}</p>
+          </div>
+     </div>
+</main>
+
+
+<div class="fon" *ngIf="ismodalCall"></div>
+<form [formGroup]='advertForm' class="modal" *ngIf="ismodalCall">
+     <p>Назва</p>
+     <input class="search" formControlName="name" type="text">
+     <p>Опис</p>
+     <textarea class="search" formControlName="description" id="" cols="30" rows="10"></textarea>
+     <div class="modBottom">
+          <button class="btn modalBtn" (click)="addAdvert()" *ngIf="!isEdit">Додати оголошення</button>
+          <button class="btn modalBtn" (click)="saveChanges()" *ngIf="isEdit">Зберегти</button>
+          <button class="btn modalBtn" (click)="modalExit()">Скасувати</button>
+     </div>
+
+
+
+</form>

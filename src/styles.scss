@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+}
+
+.btn{
+     border-radius: 10px;
+     background: rgb(245, 245, 245);
+     padding: 5px;
+     transition: 0.3s;
+     border: 1px solid #000;
+}
+
+.btn:active{
+    background-color: #dddddd;
+}
