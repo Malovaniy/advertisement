@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  BACKEND: "http://localhost:3000",
   firebaseConfig: {
     apiKey: "AIzaSyAz1TsutdCWSYfImyFi4J2qKzElm4diMFI",
     authDomain: "examination-project-e25a4.firebaseapp.com",

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IBoard } from 'src/app/shared/interface/board.interface';
 import { BoardService } from 'src/app/shared/services/board/board.service';
 

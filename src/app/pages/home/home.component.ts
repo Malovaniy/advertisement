@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   public arrAdvertisement!: Array<IBoard>
   public isEdit = false
   public uid!: string
+  
   constructor(
     private boardServices: BoardService,
     private fb: FormBuilder
@@ -26,9 +27,6 @@ export class HomeComponent implements OnInit {
     this.loadModal()
     this.initAdvertForm()
     this.search()
-    // let a = new Date()
-    // console.log(a.toISOString());
-    
   }
 
   loadAdvertisement(): void {
